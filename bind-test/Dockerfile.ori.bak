@@ -1,0 +1,11 @@
+FROM alpine:latest
+
+RUN apk --no-cache --update add alpine-sdk \
+&& apk --no-cache add linux-headers \
+&& curl ftp://ftp.isc.org/isc/bind9/9.11.0-P3/bind-9.11.0-P3.tar.gz|tar -xzv \
+&& cd bind-9.11.0-P3 \
+&& CFLAGS="-static" ./configure --without-openssl --disable-symtable \
+&& make \
+&& make install /
+
+CMD /bin/sh
