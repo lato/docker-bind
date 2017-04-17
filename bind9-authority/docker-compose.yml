@@ -1,0 +1,23 @@
+bind9-auth1:
+  image: 'bind:v1'
+  ports:
+    - '5301:53'
+    - '5301:53/udp'
+  volumes:
+    - ./config_auth1:/etc/bind
+
+bind9-auth2:
+  image: 'bind:v1'
+  ports:
+    - '5302:53'
+    - '5302:53/udp'
+  volumes:
+    - ./config_auth2:/etc/bind
+
+bind9-auth3:
+  image: 'bind:v1'
+  ports:
+    - '5303:53'
+    - '5303:53/udp'
+  volumes:
+    - ./config_auth3:/etc/bind
