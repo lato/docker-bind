@@ -1,0 +1,35 @@
+version: '2'
+services:
+  dns_auth_1:
+    image: "bind:v1"
+    container_name: "dns_auth_1"
+    networks:
+      dns1:
+        ipv4_address: 172.16.0.2
+    volumes:
+      - ./config_auth1:/etc/bind
+
+  dns_auth_2:
+    image: "bind:v1"
+    container_name: "dns_auth_2"
+    networks:
+      dns1:
+        ipv4_address: 172.16.0.3
+    volumes:
+      - ./config_auth2:/etc/bind  
+
+  dns_auth_3:
+    image: "bind:v1"
+    container_name: "dns_auth_3"
+    networks:
+      dns1:
+        ipv4_address: 172.16.0.4
+    volumes:
+      - ./config_auth3:/etc/bind
+
+networks:
+  dns1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
